@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "181382738300",
+    "project_id": "finalprojecttracking1",
+    "storage_bucket": "finalprojecttracking1.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:181382738300:android:522cbecac0e46b0894b4f9",
+        "android_client_info": {
+          "package_name": "ntu.vinh.finalprojecttracking"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4Wjx6Ux0nhzWO7jwNroFth4D_HIQRNYY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
