@@ -1,16 +1,13 @@
-import org.apache.tools.ant.util.JavaEnvUtils.VERSION_11
-
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.google.gms.google.services)
 }
 
 android {
-    namespace = "ntu.vinh.finalprojecttracking"
+    namespace = "ntu.vinh.fragment"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "ntu.vinh.finalprojecttracking"
+        applicationId = "ntu.vinh.fragment"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -35,26 +32,11 @@ android {
 }
 
 dependencies {
-    // Import the Firebase BoM
-    // Import the BoM for the Firebase platform
-    implementation (platform(libs.firebase.bom.v3312))
-
-    // When using the BoM, you don't specify versions in Firebase library dependencies
-
-    // Add the dependency for the Firebase SDK for Google Analytics
-    implementation(libs.firebase.analytics)
-
-    // TODO: Add the dependencies for any other Firebase products you want to use
-    // See https://firebase.google.com/docs/android/setup#available-libraries
-    // For example, add the dependencies for Firebase Authentication and Cloud Firestore
-    implementation(libs.firebase.auth)
-    implementation(libs.firebase.firestore)
 
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
-    implementation(libs.firebase.database)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
