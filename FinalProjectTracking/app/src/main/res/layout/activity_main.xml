@@ -1,29 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:orientation="vertical"
+    android:padding="16dp">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <!-- Trường nhập tiêu đề -->
+    <EditText
+        android:id="@+id/titleEditText"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:layout_height="wrap_content"
+        android:hint="Tiêu đề" />
 
-        <Button
-            android:id="@+id/addNotificationButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Thêm Thông Báo" />
+    <!-- Trường nhập mô tả -->
+    <EditText
+        android:id="@+id/descriptionEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Mô tả" />
 
-        <RecyclerView
-            android:id="@+id/notificationsRecyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:layout_marginTop="16dp"/>
-    </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- Ô nhập ngày -->
+    <EditText
+        android:id="@+id/dateEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Chọn ngày"
+        android:focusable="false"
+        android:clickable="true"
+        android:layout_marginTop="8dp" />
+
+    <!-- Ô nhập giờ -->
+    <EditText
+        android:id="@+id/timeEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Chọn giờ"
+        android:focusable="false"
+        android:clickable="true"
+        android:layout_marginTop="8dp" />
+
+    <!-- Nút thêm thông báo -->
+    <Button
+        android:id="@+id/addNotificationButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Thêm Thông Báo" />
+
+    <!-- Danh sách thông báo -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/notificationsRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="16dp" />
+
+</LinearLayout>

@@ -6,42 +6,21 @@ public class Notification {
     private String description;
     private long time;
 
-    public Notification() {
-    }
-
-    public Notification(long time, String description, String title, int id) {
-        this.time = time;
-        this.description = description;
-        this.title = title;
+    // Constructors, getters and setters
+    public Notification(int id, String title, String description, long time) {
         this.id = id;
+        this.title = title;
+        this.description = description;
+        this.time = time;
     }
-
     public int getId() {
         return id;
     }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getTitle() {
         return title;
     }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public String getDescription() {
         return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public long getTime() {
-        return time;
     }
 
     public void setTime(long time) {
