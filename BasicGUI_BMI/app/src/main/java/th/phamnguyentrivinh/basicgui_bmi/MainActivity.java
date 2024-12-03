@@ -9,12 +9,10 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
 
 public class MainActivity extends AppCompatActivity {
-    private EditText edtWeight, edtHeight;
+    private EditText edtHeight, edtWeight;
     private CheckBox checkBoxAsian;
     private Button btnCalculate;
     private TextView tvResult;
@@ -26,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
+        edtHeight = findViewById(R.id.edtHeight);
         edtWeight = findViewById(R.id.edtWeight);
         checkBoxAsian = findViewById(R.id.checkBoxAsian);
         btnCalculate = findViewById(R.id.btnCalculate);
@@ -50,6 +49,33 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Vui lòng nhập số lớn hơn 0", Toast.LENGTH_SHORT).show();
                 return;
             }
+
+            double bmi = weight / (height * height);
+            boolean checkAsian = checkBoxAsian.isChecked();
+            String result = "";
+
+            if(checkAsian){
+                if(bmi < 17.5) {
+                    result = "Bạn đang gầy";
+                } else if(bmi >= 17.5 && bmi <= 22.99) {
+                    result = "Bạn đang bình thường";
+                } else if(bmi >= 23 && bmi <= 27.99) {
+                    result = "Bạn đang thừa cân";
+                } else {
+                    result = "Bạn đang béo phì";
+                }
+            } else {
+                if (bmi < 18.5) {
+                    result = "Bạn đang gầy";
+                } else if (bmi >= 18.5 && bmi <= 24.99) {
+                    result = "Bạn đang bình thường";
+                } else if (bmi >= 23 && bmi <= 27.99) {
+                    result = "Bạn đang thừa cân";
+                } else {
+                    result = "Bạn đang béo phì";
+                }
+            }
+            tvResult.setText(String.format("Kết quả:\nBMI = %.2f\nĐánh giá: %s", bmi, result));
         });
     }
 }
