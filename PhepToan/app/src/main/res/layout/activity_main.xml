@@ -75,28 +75,28 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
-                android:text="+" />
+                android:text="Cộng " />
 
             <RadioButton
                 android:id="@+id/rbSubtract"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
-                android:text="-" />
+                android:text="Trừ" />
 
             <RadioButton
                 android:id="@+id/rbMultiply"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
-                android:text="*" />
+                android:text="Nhân" />
 
             <RadioButton
                 android:id="@+id/rbDivide"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
-                android:text="/" />
+                android:text="Chia" />
         </RadioGroup>
 
         <!-- Nút thực hiện -->
