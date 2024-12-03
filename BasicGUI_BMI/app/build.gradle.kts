@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "th.phamnguyentrivinh.pheptoan"
+    namespace = "th.phamnguyentrivinh.basicgui_bmi"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "th.phamnguyentrivinh.pheptoan"
+        applicationId = "th.phamnguyentrivinh.basicgui_bmi"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -29,7 +29,6 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-    buildToolsVersion = "35.0.0"
 }
 
 dependencies {
@@ -38,7 +37,6 @@ dependencies {
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
-    implementation(libs.firebase.inappmessaging)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
