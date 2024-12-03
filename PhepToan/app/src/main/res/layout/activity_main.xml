@@ -8,11 +8,12 @@
     tools:context=".MainActivity">
 
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="16dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
 
         <!-- Nhập số A -->
         <EditText
@@ -27,33 +28,70 @@
             android:id="@+id/edtNumberB"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:hint="Nhập số B"
-            android:inputType="numberDecimal"
-            android:layout_marginTop="8dp" />
+            android:inputType="numberDecimal" />
 
-        <!-- Chọn phép toán -->
-        <Spinner
-            android:id="@+id/spinnerOperations"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp" />
+            android:layout_marginTop="16dp"
+            android:text="Chọn phép toán"
+            android:textSize="18sp"
+        <!-- Chọn phép toán -->
+        <RadioGroup
+            android:id="@+id/radioGroupOperations"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rbAdd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:
+                android:text="+" />
+
+            <RadioButton
+                android:id="@+id/rbSubtract"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:text="-" />
+
+            <RadioButton
+                android:id="@+id/rbMultiply"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:text="*" />
+
+            <RadioButton
+                android:id="@+id/rbDivide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:text="/" />
+        </RadioGroup>
 
         <!-- Nút thực hiện -->
         <Button
             android:id="@+id/btnCalculate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Thực hiện"
-            android:layout_marginTop="16dp" />
+            android:layout_marginTop="16dp"
+            android:text="Thực hiện" />
 
         <!-- Kết quả -->
         <TextView
             android:id="@+id/tvResult"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:text="Kết quả: "
             android:textSize="18sp"
-            android:layout_marginTop="16dp"
             android:textStyle="bold" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
