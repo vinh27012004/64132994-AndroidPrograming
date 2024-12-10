@@ -15,14 +15,14 @@
         android:gravity="center"
         android:orientation="vertical"
         android:padding="16dp"
-        tools:layout_editor_absoluteX="-16dp"
-        tools:layout_editor_absoluteY="167dp">
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
 
         <!-- Tiêu đề -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="32dp"
+            android:layout_marginBottom="60dp"
             android:text="TRẮC NGHIỆM"
             android:textColor="@android:color/black"
             android:textSize="24sp"
