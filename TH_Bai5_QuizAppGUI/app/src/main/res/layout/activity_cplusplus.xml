@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="20dp"
+    tools:context=".Cplusplus">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/image3">
+    </ImageView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewQuestion"
+        android:layout_width="267dp"
+        android:layout_height="114dp"
+        android:layout_marginTop="250dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp"
+        android:outlineSpotShadowColor="@color/purple"
+        android:outlineAmbientShadowColor="@color/purple"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.427"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Question"
+            android:textSize="30sp" />
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/imageView2"
+        app:layout_constraintStart_toStartOf="parent">
+        <!-- Các đáp án -->
+        <EditText
+            android:id="@+id/answerA"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/cr14bffffff"
+            android:elevation="6dp"
+            android:hint="A"
+            android:padding="16dp"
+            android:textColor="#5B1CAE"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/answerB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/cr14bffffff"
+            android:elevation="6dp"
+            android:hint="B"
+            android:padding="16dp"
+            android:textColor="#5B1CAE"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/answerC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/cr14bffffff"
+            android:elevation="6dp"
+            android:hint="C"
+            android:padding="16dp"
+            android:textColor="#5B1CAE"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/answerD"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/cr14bffffff"
+            android:elevation="6dp"
+            android:hint="D"
+            android:padding="16dp"
+            android:textColor="#5B1CAE"
+            android:textSize="15sp" />
+
+        <!-- Nút tiếp theo -->
+        <Button
+            android:id="@+id/nextButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:backgroundTint="#5B1CAE"
+            android:elevation="6dp"
+            android:padding="16dp"
+            android:text="Next"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp" />
+
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
