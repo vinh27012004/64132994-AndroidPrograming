@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="TextStyle.ID" parent="TextStyle">
+        <item name="android:textSize">10sp</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:textColor">@color/gray</item>
+    </style>
+    <!-- Style cơ bản -->
+    <style name="TextStyle" parent="android:TextAppearance">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <!-- Style Amount kế thừa từ TextStyle -->
+    <style name="TextStyle.Amount" parent="TextStyle">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <!-- Style Category kế thừa từ TextStyle -->
+    <style name="TextStyle.Category" parent="TextStyle">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- Style Note kế thừa từ TextStyle -->
+    <style name="TextStyle.Note" parent="TextStyle">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/gray</item>
+    </style>
+
+    <!-- Style Date kế thừa từ TextStyle -->
+    <style name="TextStyle.Date" parent="TextStyle">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:textColor">@color/gray</item>
+    </style>
+</resources>

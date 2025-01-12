@@ -1,52 +1,99 @@
 package ntu.vinh.quanlychitieu.controller;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.PopupMenu;
-
-import androidx.activity.EdgeToEdge;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
+import java.util.ArrayList;
+import java.util.List;
 import ntu.vinh.quanlychitieu.R;
+import ntu.vinh.quanlychitieu.DAL.DatabaseHelper;
+import ntu.vinh.quanlychitieu.MODELS.Transaction;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final int REQUEST_CODE_ADD_TRANSACTION = 1;
+    private RecyclerView rvRecentTransactions;
+    private TransactionAdapter transactionAdapter;
+    private DatabaseHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.activity_main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+
+        rvRecentTransactions = findViewById(R.id.rv_recent_transactions);
+        rvRecentTransactions.setLayoutManager(new LinearLayoutManager(this));
+
+        dbHelper = new DatabaseHelper(this);
+        loadTransactions();
 
         FloatingActionButton fabAdd = findViewById(R.id.fab_add);
-        fabAdd.setOnClickListener(v -> {
-            PopupMenu popup = new PopupMenu(MainActivity.this, v);
-            MenuInflater inflater = popup.getMenuInflater();
-            inflater.inflate(R.menu.menu_add_options, popup.getMenu());
-            popup.setOnMenuItemClickListener(item -> {
-                int itemId = item.getItemId();
-                if (itemId == R.id.menu_add_transaction) {
-                    Intent addTransactionIntent = new Intent(MainActivity.this, AddTransactionActivity.class);
-                    startActivity(addTransactionIntent);
-                    return true;
-                } else if (itemId == R.id.menu_add_category) {
-                    Intent addCategoryIntent = new Intent(MainActivity.this, AddCategoryActivity.class);
-                    startActivity(addCategoryIntent);
-                    return true;
-                } else {
-                    return false;
-                }
-            });
-            popup.show();
-        });
+        fabAdd.setOnClickListener(view -> showPopupMenu(view));
+    }
+
+    private void showPopupMenu(View view) {
+        PopupMenu popup = new PopupMenu(this, view);
+        MenuInflater inflater = popup.getMenuInflater();
+        inflater.inflate(R.menu.menu_add_options, popup.getMenu());
+        popup.setOnMenuItemClickListener(this::onMenuItemClick);
+        popup.show();
+    }
+
+    private boolean onMenuItemClick(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.menu_add_transaction) {
+            startActivityForResult(new Intent(this, AddTransactionActivity.class), REQUEST_CODE_ADD_TRANSACTION);
+            return true;
+        } else if (id == R.id.menu_add_category) {
+            startActivity(new Intent(this, AddCategoryActivity.class));
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE_ADD_TRANSACTION && resultCode == RESULT_OK) {
+            loadTransactions();
+        }
+    }
+
+    private void loadTransactions() {
+        List<Transaction> transactionList = new ArrayList<>();
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor cursor = db.query("transactions", null, null, null, null, null, null);
+
+        if (cursor.moveToFirst()) {
+            int idIndex = cursor.getColumnIndex("id");
+            int amountIndex = cursor.getColumnIndex("amount");
+            int categoryIndex = cursor.getColumnIndex("category");
+            int noteIndex = cursor.getColumnIndex("note");
+            int dateIndex = cursor.getColumnIndex("date");
+
+            do {
+                int id = idIndex != -1 ? cursor.getInt(idIndex) : 0;
+                String amount = amountIndex != -1 ? cursor.getString(amountIndex) : "";
+                String category = categoryIndex != -1 ? cursor.getString(categoryIndex) : "";
+                String note = noteIndex != -1 ? cursor.getString(noteIndex) : "";
+                String date = dateIndex != -1 ? cursor.getString(dateIndex) : "";
+                transactionList.add(new Transaction(id, amount, category, note, date));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+
+        transactionAdapter = new TransactionAdapter(transactionList);
+        rvRecentTransactions.setAdapter(transactionAdapter);
     }
 }

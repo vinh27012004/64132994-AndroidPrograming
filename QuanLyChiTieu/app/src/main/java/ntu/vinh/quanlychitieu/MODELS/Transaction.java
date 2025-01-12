@@ -1,13 +1,13 @@
 package ntu.vinh.quanlychitieu.MODELS;
 
-    public class Transaction {
+public class Transaction {
     private int id;
-    private double amount;
+    private String amount;
     private String category;
     private String note;
     private String date;
 
-    public Transaction(int id, double amount, String category, String note, String date) {
+    public Transaction(int id, String amount, String category, String note, String date) {
         this.id = id;
         this.amount = amount;
         this.category = category;
@@ -15,12 +15,11 @@ package ntu.vinh.quanlychitieu.MODELS;
         this.date = date;
     }
 
-    // Getters and Setters
     public int getId() {
         return id;
     }
 
-    public double getAmount() {
+    public String getAmount() {
         return amount;
     }
 
