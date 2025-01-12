@@ -24,6 +24,7 @@ import ntu.vinh.quanlychitieu.BLL.TransactionRepository;
 public class MainActivity extends AppCompatActivity {
 
     private static final int REQUEST_CODE_ADD_TRANSACTION = 1;
+    private static final int REQUEST_CODE_MANAGE_DATA = 2;
     private RecyclerView rvRecentTransactions;
     private TransactionAdapter transactionAdapter;
     private DatabaseHelper dbHelper;
@@ -63,7 +64,10 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(this, AddCategoryActivity.class));
             return true;
         } else if (id == R.id.menu_manage_data) {
-            startActivity(new Intent(this, ManageDataActivity.class));
+            startActivityForResult(new Intent(this, ManageDataActivity.class), REQUEST_CODE_MANAGE_DATA);
+            return true;
+        } else if (id == R.id.menu_statistics) {
+            startActivity(new Intent(this, StatisticsActivity.class));
             return true;
         }
         return false;
@@ -73,6 +77,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE_ADD_TRANSACTION && resultCode == RESULT_OK) {
+            loadTransactions();
+            updateBalance();
+        } else if (requestCode == REQUEST_CODE_MANAGE_DATA && resultCode == RESULT_OK) {
             loadTransactions();
             updateBalance();
         }
@@ -120,13 +127,11 @@ public class MainActivity extends AppCompatActivity {
 
         tvBalance.setText(String.format("%d VNĐ", balance));
 
-        if(balance < 0){
+        if (balance < 0) {
             tvBalance.setTextColor(getResources().getColor(android.R.color.holo_red_dark));
-
-        }else if(balance == 0){
+        } else if (balance == 0) {
             tvBalance.setTextColor(getResources().getColor(android.R.color.black));
-        }
-        else {
+        } else {
             tvBalance.setTextColor(getResources().getColor(android.R.color.holo_green_dark));
         }
     }

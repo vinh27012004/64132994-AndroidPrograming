@@ -22,6 +22,7 @@
                 android:layout_height="wrap_content"
                 android:background="?attr/colorPrimary"
                 android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                app:navigationIcon="@drawable/ds_arrow_black"
                 app:title="Quản lý dữ liệu"
                 app:titleTextColor="@android:color/white" />
 

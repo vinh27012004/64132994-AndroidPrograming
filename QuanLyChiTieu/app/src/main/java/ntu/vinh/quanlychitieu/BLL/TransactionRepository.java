@@ -1,11 +1,11 @@
 package ntu.vinh.quanlychitieu.BLL;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import ntu.vinh.quanlychitieu.DAL.DatabaseHelper;
 import ntu.vinh.quanlychitieu.MODELS.Transaction;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,17 +14,6 @@ public class TransactionRepository {
 
     public TransactionRepository(Context context) {
         dbHelper = new DatabaseHelper(context);
-    }
-
-    public void addTransaction(Transaction transaction) {
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put("amount", transaction.getAmount());
-        values.put("category", transaction.getCategory());
-        values.put("note", transaction.getNote());
-        values.put("date", transaction.getDate());
-        db.insert("transactions", null, values);
-        db.close();
     }
 
     public List<Transaction> getAllTransactions() {
@@ -52,5 +41,23 @@ public class TransactionRepository {
         cursor.close();
         db.close();
         return transactions;
+    }
+
+    public List<String> getAllCategories() {
+        List<String> categories = new ArrayList<>();
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor cursor = db.query(true, "transactions", new String[]{"category"}, null, null, null, null, null, null);
+        if (cursor.moveToFirst()) {
+            do {
+                int categoryIndex = cursor.getColumnIndex("category");
+                if (categoryIndex >= 0) {
+                    String category = cursor.getString(categoryIndex);
+                    categories.add(category);
+                }
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return categories;
     }
 }

@@ -10,4 +10,7 @@
     <item
         android:id="@+id/menu_manage_data"
         android:title="Quản lý dữ liệu" />
+    <item
+        android:id="@+id/menu_statistics"
+        android:title="Thống kê" />
 </menu>
