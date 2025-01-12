@@ -35,4 +35,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS categories");
         onCreate(db);
     }
+    // Method to delete a category
+    public void deleteCategory(String categoryName) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("categories", "name = ?", new String[]{categoryName});
+        db.close();
+    }
+
+    // Method to delete a transaction
+    public void deleteTransaction(int transactionId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("transactions", "id = ?", new String[]{String.valueOf(transactionId)});
+        db.close();
+    }
 }

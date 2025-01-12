@@ -8,6 +8,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.PopupMenu;
+import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -18,6 +19,7 @@ import java.util.List;
 import ntu.vinh.quanlychitieu.R;
 import ntu.vinh.quanlychitieu.DAL.DatabaseHelper;
 import ntu.vinh.quanlychitieu.MODELS.Transaction;
+import ntu.vinh.quanlychitieu.BLL.TransactionRepository;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView rvRecentTransactions;
     private TransactionAdapter transactionAdapter;
     private DatabaseHelper dbHelper;
+    private TextView tvBalance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +37,10 @@ public class MainActivity extends AppCompatActivity {
         rvRecentTransactions = findViewById(R.id.rv_recent_transactions);
         rvRecentTransactions.setLayoutManager(new LinearLayoutManager(this));
 
+        tvBalance = findViewById(R.id.tv_balance);
         dbHelper = new DatabaseHelper(this);
         loadTransactions();
+        updateBalance();
 
         FloatingActionButton fabAdd = findViewById(R.id.fab_add);
         fabAdd.setOnClickListener(view -> showPopupMenu(view));
@@ -57,6 +62,9 @@ public class MainActivity extends AppCompatActivity {
         } else if (id == R.id.menu_add_category) {
             startActivity(new Intent(this, AddCategoryActivity.class));
             return true;
+        } else if (id == R.id.menu_manage_data) {
+            startActivity(new Intent(this, ManageDataActivity.class));
+            return true;
         }
         return false;
     }
@@ -66,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE_ADD_TRANSACTION && resultCode == RESULT_OK) {
             loadTransactions();
+            updateBalance();
         }
     }
 
@@ -95,5 +104,30 @@ public class MainActivity extends AppCompatActivity {
 
         transactionAdapter = new TransactionAdapter(transactionList);
         rvRecentTransactions.setAdapter(transactionAdapter);
+    }
+
+    private void updateBalance() {
+        List<Transaction> transactions = new TransactionRepository(this).getAllTransactions();
+        int balance = 0;
+
+        for (Transaction transaction : transactions) {
+            if ("Thêm số dư".equals(transaction.getCategory())) {
+                balance += Integer.parseInt(transaction.getAmount());
+            } else {
+                balance -= Integer.parseInt(transaction.getAmount());
+            }
+        }
+
+        tvBalance.setText(String.format("%d VNĐ", balance));
+
+        if(balance < 0){
+            tvBalance.setTextColor(getResources().getColor(android.R.color.holo_red_dark));
+
+        }else if(balance == 0){
+            tvBalance.setTextColor(getResources().getColor(android.R.color.black));
+        }
+        else {
+            tvBalance.setTextColor(getResources().getColor(android.R.color.holo_green_dark));
+        }
     }
 }

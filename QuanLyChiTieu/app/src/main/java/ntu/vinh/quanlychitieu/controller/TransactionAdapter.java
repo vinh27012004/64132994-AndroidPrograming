@@ -1,4 +1,3 @@
-// TransactionAdapter.java
 package ntu.vinh.quanlychitieu.controller;
 
 import android.view.LayoutInflater;
@@ -29,6 +28,8 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
     @Override
     public void onBindViewHolder(@NonNull TransactionViewHolder holder, int position) {
         Transaction transaction = transactionList.get(position);
+
+        holder.tvId.setText(String.valueOf(transaction.getId()));
         holder.tvAmount.setText(transaction.getAmount());
         holder.tvCategory.setText(transaction.getCategory());
         holder.tvNote.setText(transaction.getNote());
@@ -41,10 +42,11 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
     }
 
     public static class TransactionViewHolder extends RecyclerView.ViewHolder {
-        TextView tvAmount, tvCategory, tvNote, tvDate;
+        TextView tvId, tvAmount, tvCategory, tvNote, tvDate;
 
         public TransactionViewHolder(@NonNull View itemView) {
             super(itemView);
+            tvId = itemView.findViewById(R.id.tv_id);
             tvAmount = itemView.findViewById(R.id.tv_amount);
             tvCategory = itemView.findViewById(R.id.tv_category);
             tvNote = itemView.findViewById(R.id.tv_note);

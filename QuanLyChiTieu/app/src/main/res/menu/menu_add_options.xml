@@ -7,4 +7,7 @@
     <item
         android:id="@+id/menu_add_category"
         android:title="Thêm danh mục" />
+    <item
+        android:id="@+id/menu_manage_data"
+        android:title="Quản lý dữ liệu" />
 </menu>

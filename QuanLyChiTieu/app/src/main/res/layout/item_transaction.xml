@@ -4,64 +4,44 @@
     android:orientation="vertical"
     android:padding="16dp"
     android:background="@drawable/background_item"
-    android:elevation="4dp"
-    android:layout_marginBottom="8dp">
+    android:elevation="4dp">
 
-    <!-- TextView cho ID với padding và margin hợp lý -->
     <TextView
         android:id="@+id/tv_id"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:paddingStart="8dp"
-        android:paddingEnd="8dp"
         android:text="ID"
-        android:textAppearance="@style/TextStyle.ID"
-        android:gravity="start"
-        android:layout_weight="1" />
+        android:textAppearance="@style/TextStyle.ID" />
 
-    <!-- TextView cho Amount với padding, gravity và margin hợp lý -->
     <TextView
         android:id="@+id/tv_amount"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Amount (VND)"
-        android:textAppearance="@style/TextStyle.Amount"
-        android:gravity="start"
-        android:layout_marginBottom="8dp"
-        android:layout_weight="1"/>
+        android:textAppearance="@style/TextStyle.Amount" />
 
-    <!-- TextView cho Category với margin, gravity hợp lý -->
     <TextView
         android:id="@+id/tv_category"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:text="Category"
-        android:textAppearance="@style/TextStyle.Category"
-        android:gravity="start"
-        android:layout_marginBottom="8dp"
-        android:layout_weight="1"/>
+        android:textAppearance="@style/TextStyle.Category" />
 
-    <!-- TextView cho Note với margin, gravity hợp lý -->
     <TextView
         android:id="@+id/tv_note"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:text="Note"
-        android:textAppearance="@style/TextStyle.Note"
-        android:gravity="start"
-        android:layout_marginBottom="8dp"
-        android:layout_weight="1"/>
+        android:textAppearance="@style/TextStyle.Note" />
 
-    <!-- TextView cho Date với margin, gravity hợp lý -->
     <TextView
         android:id="@+id/tv_date"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:text="Date"
-        android:textAppearance="@style/TextStyle.Date"
-        android:gravity="start"
-        android:layout_marginBottom="8dp"
-        android:layout_weight="1"/>
+        android:textAppearance="@style/TextStyle.Date" />
 
 </LinearLayout>
